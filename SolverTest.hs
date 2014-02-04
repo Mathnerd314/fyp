@@ -8,10 +8,11 @@ import Control.Monad
 import Parser
 import Lexer
 import UserType
+import ObjectTypes
 import Text.PrettyPrint
 import qualified Data.Map as M
 import Language
-import DebugSemantics
+-- import DebugSemantics
 
 -- type of "method(x) do return x end"
 idFunc = do
@@ -76,8 +77,8 @@ subsumptionTest = do
   subsumes (y,x)
 
 
-testType s = do
-  let ut = fmap render $ fromSingleton $ runDebugSemantics' $ runEval' (SymbolTable M.empty M.empty) $ parseType $ runLexer $ s
+testType runDebugSemantics' s = do
+  let ut = fmap render $ fromSingleton $ runDebugSemantics' $ runEval' (SymbolTable M.empty M.empty M.empty) $ parseType $ runLexer $ s
   print ut
   t <- fromUserType Pos ut
   showTypeGraph t

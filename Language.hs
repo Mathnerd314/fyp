@@ -20,7 +20,7 @@ import Debug.Trace
 traceM s = trace ("trace: " ++ s) $ return ()
 
 
-data ControlFlowJump m t v e= LoopBreak | LoopContinue | FuncReturn e 
+data ControlFlowJump (m :: * -> *) t v e= LoopBreak | LoopContinue | FuncReturn e 
 instance Error (ControlFlowJump m t v e) where
     noMsg = undefined
     strMsg = undefined
@@ -64,7 +64,7 @@ newtype TyVar = TyVar String deriving (Ord,Eq,Show)
 newtype Def = Def String deriving (Ord,Eq,Show)
 
 
-data SymbolTable m t v e = SymbolTable {symVar :: M.Map Var v,
+data SymbolTable (m :: * -> *) t v e = SymbolTable {symVar :: M.Map Var v,
                                         symVal :: M.Map Def e,
                                         symType :: M.Map TyVar t}
 

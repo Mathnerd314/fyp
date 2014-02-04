@@ -1,4 +1,4 @@
-{-# LANGUAGE Arrows, TypeSynonymInstances, MultiParamTypeClasses, TypeFamilies #-}
+{-# LANGUAGE Arrows, TypeSynonymInstances, MultiParamTypeClasses, TypeFamilies, FlexibleInstances #-}
 module Compiler where
 import Data.List
 import Data.Function
